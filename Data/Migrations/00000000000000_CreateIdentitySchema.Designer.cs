@@ -9,7 +9,7 @@ namespace Sunburst.Data.Migrations
     using Sunburst.Data;
     using System;
 
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SunburstDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {

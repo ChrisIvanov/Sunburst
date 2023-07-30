@@ -1,0 +1,23 @@
+#main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://spiritsunburst.blob.core.windows.net/images/background-main.jpg?sp=r&st=2023-07-30T18:03:32Z&se=2023-08-21T02:03:32Z&sip=62.73.69.148&spr=https&sv=2022-11-02&sr=b&sig=I%2BK9DsYrTWxXs5dxSL7uTaMQ76I3cPDulegbVGeKVdg%3D');
+    background-size: cover;
+    height: 1000px;
+
+}
+
+.header {
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.0));
+    color: beige;
+    width: 100%;
+}
+
+h1, h3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+

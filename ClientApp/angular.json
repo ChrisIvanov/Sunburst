@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "Sunburst"
+  "defaultProject": "Sunburst",
+  "cli": {
+    "analytics": false
+  }
 }
