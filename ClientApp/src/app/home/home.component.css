@@ -2,9 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('https://spiritsunburst.blob.core.windows.net/images/background-main.jpg?sp=r&st=2023-07-30T18:03:32Z&se=2023-08-21T02:03:32Z&sip=62.73.69.148&spr=https&sv=2022-11-02&sr=b&sig=I%2BK9DsYrTWxXs5dxSL7uTaMQ76I3cPDulegbVGeKVdg%3D');
-    background-size: cover;
-    height: 1000px;
 
 }
 
@@ -12,6 +9,11 @@
     background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.0));
     color: beige;
     width: 100%;
+    background-image: url('https://spiritsunburst.blob.core.windows.net/images/background-main.jpg?sp=r&st=2023-07-30T18:03:32Z&se=2023-08-21T02:03:32Z&sip=62.73.69.148&spr=https&sv=2022-11-02&sr=b&sig=I%2BK9DsYrTWxXs5dxSL7uTaMQ76I3cPDulegbVGeKVdg%3D');
+    background-size: cover;
+    position: relative;
+    background-position-y: -250px;
+    height: 280px;
 }
 
 h1, h3{
@@ -21,3 +23,58 @@ h1, h3{
 
 }
 
+.header h1 {
+    display: flex;
+    position: relative;
+    left: 500px;
+}
+
+.header h3 {
+    display: flex;
+    position: relative;
+    left: 500px;
+}
+
+.subheader-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-image: url("https://spiritsunburst.blob.core.windows.net/images/basket-weev-main-background3.jpg?sp=r&st=2023-08-03T17:55:36Z&se=2023-08-22T01:55:36Z&spr=https&sv=2022-11-02&sr=b&sig=J4fX2vUB%2BnQNBOa7jVvzwNcEeAFbqWqFE3BWq5y%2F3Q4%3D");
+}
+
+.subheader-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    position: relative;
+    left: 40%;
+    height: 80px;
+    background-color: #fefae0;
+    border-color: gold;
+    box-shadow: 2px 2px 5px silver;
+    margin: 10px;
+}
+
+.subheader-row {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(22, 5, 49, 0.32);
+    padding: 20px;
+}
+
+.subheader-row p {
+    display: flex;
+    color: chocolate;
+    font-size: 24px;
+    font-weight: 500;
+    text-shadow: 2px 4px 7px rgb(16, 3, 48);
+    align-items: center;
+    padding: 15px;
+    justify-content: center;
+    text-align-last: center;
+}
+
+/* .subheader-row img {
+    border: ;
+} */

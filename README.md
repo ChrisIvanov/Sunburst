@@ -6,5 +6,6 @@ Technology Stack
 ASP.NET
 C#
 Azure Blob Storage
+Azure SQL Database
 Angular
 TypeScript
