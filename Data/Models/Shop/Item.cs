@@ -1,4 +1,4 @@
-﻿namespace Sunburst.Models.Shop
+﻿namespace Sunburst.Data.Models.Shop
 {
     using AutoMapper.Configuration.Conventions;
     using System.Reflection.Metadata.Ecma335;
@@ -15,12 +15,14 @@
 
         public string? Description { get; set; }
 
-        public bool IsSet { get; set; }
+        public bool HasSet { get; set; }
 
         public int SetId { get; set; }
 
-        public Set Set { get; set; }
-
         public string? ImagePath { get; set; }
+
+        public int OverallRating { get; set; }
+
+        public string? Category { get; set; }
     }
 }

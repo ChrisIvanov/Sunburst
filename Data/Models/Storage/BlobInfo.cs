@@ -1,4 +1,4 @@
-﻿namespace Sunburst.Models.Storage
+﻿namespace Sunburst.Data.Models.Storage
 {
     public class BlobInfo
     {

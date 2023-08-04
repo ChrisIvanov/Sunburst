@@ -1,6 +1,8 @@
-﻿namespace Sunburst.Models.Shop
+﻿namespace Sunburst.Models.Shop.Set
 {
-    public class Set
+    using Sunburst.Models.Shop.Item;
+
+    public class EditSetModel
     {
         public int Id { get; set; }
 
@@ -10,6 +12,6 @@
 
         public int ItemsCount { get; set; }
 
-        public IEnumerable<Item> Items { get; set; }
+        public IEnumerable<GetItemModel>? Items { get; set; }
     }
 }

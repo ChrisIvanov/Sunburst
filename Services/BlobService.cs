@@ -1,7 +1,7 @@
 ﻿namespace Sunburst.Services
 {
     using Azure.Storage.Blobs;
-    using Sunburst.Models.Storage;
+    using Sunburst.Data.Models.Storage;
     using Sunburst.Services.Contracts;
     using System.Collections.Generic;
     using System.Threading.Tasks;

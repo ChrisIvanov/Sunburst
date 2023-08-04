@@ -1,6 +1,6 @@
 ﻿namespace Sunburst.Services.Contracts
 {
-    using Sunburst.Models.Storage;
+    using Sunburst.Data.Models.Storage;
 
     public interface IBlobService
     {

@@ -1,7 +1,7 @@
 ﻿namespace Sunburst.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Sunburst.Models.Storage;
+    using Sunburst.Data.Models.Storage;
     using Sunburst.Services.Contracts;
     using System.Reflection.Metadata;
 

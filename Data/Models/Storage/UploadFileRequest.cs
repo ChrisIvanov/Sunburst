@@ -1,6 +1,6 @@
-﻿namespace Sunburst.Models.Storage
+﻿namespace Sunburst.Data.Models.Storage
 {
-    public class UploadContentRequest
+    public class UploadFileRequest
     {
         public string FilePath { get; set; }
 

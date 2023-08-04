@@ -4,8 +4,8 @@
     using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
+    using Sunburst.Data.Models.Shop;
     using Sunburst.Models;
-    using Sunburst.Models.Shop;
 
     public class SunburstDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
