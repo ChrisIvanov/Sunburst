@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Sunburst.Controllers;
 using Sunburst.Data;
 using Sunburst.Models;
+using Sunburst.Services.Contracts.DataContracts;
+using Sunburst.Services.DataService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,12 +28,18 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, SunburstDbContext>();
 
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<ISetService, SetService>();
+
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+});
 
 var app = builder.Build();
 
@@ -38,14 +47,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
-    app.UseSwagger(options =>
-    {
-        options.SerializeAsV2 = true;
-    });
+    app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
     });
 }
 else

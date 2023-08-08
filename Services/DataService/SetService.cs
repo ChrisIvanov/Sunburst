@@ -1,12 +1,13 @@
 ﻿namespace Sunburst.Services.DataService
 {
+    using System.Net;
     using Sunburst.Data.Models.Shop;
     using Sunburst.Data;
     using Sunburst.Models.Shop.Item;
     using Sunburst.Models.Shop.Set;
-    using System.Net;
+    using Sunburst.Services.Contracts.DataContracts;
 
-    public class SetService
+    public class SetService : ISetService
     {
         private SunburstDbContext _context;
         private readonly List<GetSetModel> setModels;
@@ -121,39 +122,39 @@
 
             foreach (var set in allSets)
             {
-                GetSetModel newSet = new GetSetModel();
+                GetSetModel setModel = new GetSetModel();
 
-                set.Name = newSet.Name;
-                set.Description = newSet.Description;
-                set.ItemsCount = newSet.ItemsCount;
+                setModel.Name = set.Name;
+                setModel.Description = set.Description;
+                setModel.ItemsCount = set.ItemsCount;
 
                 if (set.Items != null)
                 {
-                    var modelSetItems = new List<Item>();
+                    var setItemsList = new List<GetItemModel>();
                     foreach (var item in set.Items)
                     {
-                        Item itemModel = new Item();
+                        GetItemModel itemModel = new GetItemModel();
 
-                        item.Name = itemModel.Name;
-                        item.Description = itemModel.Description;
-                        item.Price = itemModel.Price;
-                        item.Availability = itemModel.Availability;
-                        item.ImagePath = itemModel.ImagePath;
-                        item.OverallRating = itemModel.OverallRating;
-                        item.Category = itemModel.Category;
+                        itemModel.Name = item.Name;
+                        itemModel.Description = item.Description;
+                        itemModel.Price = item.Price;
+                        itemModel.Availability = item.Availability;
+                        itemModel.ImagePath = item.ImagePath;
+                        itemModel.OverallRating = item.OverallRating;
+                        itemModel.Category = item.Category;
                         if (item.HasSet)
                         {
-                            item.HasSet = true;
-                            item.SetId = itemModel.SetId;
+                            itemModel.HasSet = true;
+                            itemModel.SetId = item.SetId;
                         }
 
-                        modelSetItems.Add(itemModel);
+                        setItemsList.Add(itemModel);
                     }
 
-                    set.Items = modelSetItems;
+                    setModel.Items = setItemsList;
                 }
 
-                setModels.Add(newSet);
+                setModels.Add(setModel);
             }
 
             return setModels;
@@ -171,28 +172,28 @@
 
             if (setModel.Items != null)
             {
-                var modelSetItems = new List<Item>();
+                var setItemsList = new List<GetItemModel>();
                 foreach (var item in set.Items)
                 {
-                    Item itemModel = new Item();
+                    GetItemModel itemModel = new GetItemModel();
 
-                    item.Name = itemModel.Name;
-                    item.Description = itemModel.Description;
-                    item.Price = itemModel.Price;
-                    item.Availability = itemModel.Availability;
-                    item.ImagePath = itemModel.ImagePath;
-                    item.OverallRating = itemModel.OverallRating;
-                    item.Category = itemModel.Category;
+                    itemModel.Name = item.Name;
+                    itemModel.Description = item.Description;
+                    itemModel.Price = item.Price;
+                    itemModel.Availability = item.Availability;
+                    itemModel.ImagePath = item.ImagePath;
+                    itemModel.OverallRating = item.OverallRating;
+                    itemModel.Category = item.Category;
                     if (item.HasSet)
                     {
-                        item.HasSet = true;
-                        item.SetId = itemModel.SetId;
+                        itemModel.HasSet = true;
+                        itemModel.SetId = item.SetId;
                     }
 
-                    modelSetItems.Add(itemModel);
+                    setItemsList.Add(itemModel);
                 }
 
-                set.Items = modelSetItems;
+                setModel.Items = setItemsList;
             }
 
             return setModel;

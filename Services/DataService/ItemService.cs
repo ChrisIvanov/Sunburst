@@ -1,114 +1,107 @@
 ﻿namespace Sunburst.Services.DataService
 {
     using Microsoft.AspNetCore.Http.HttpResults;
+    using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.EntityFrameworkCore;
     using Sunburst.Data;
     using Sunburst.Data.Models.Shop;
     using Sunburst.Models.Shop.Item;
+    using Sunburst.Services.Contracts.DataContracts;
 
-    public class ItemService
+    public class ItemService : IItemService
     {
-        private SunburstDbContext _context;
-        private readonly List<GetItemModel> itemModels;
+        private readonly SunburstDbContext _context;
+        private readonly List<GetItemModel> itemList;
 
-        public ItemService()
+        public ItemService(SunburstDbContext context)
         {
-            this.itemModels = new List<GetItemModel>();
+            _context = context;
+            this.itemList = new List<GetItemModel>();
         }
 
-        public async Task<int> CreateItemAsync(CreateItemModel modelItem)
+        public async Task<int> CreateItemAsync(CreateItemModel itemModel)
         {
-            var match = this._context.Items.Where(x => x.Name == modelItem.Name);
+            var match = await this._context.Items.AnyAsync(x => x.Name == itemModel.Name);
 
-            if (match != null)
+            if (!match)
             {
                 throw new NullReferenceException("Item already exists.");
             }
 
             Item item = new Item();
 
-            item.Name = modelItem.Name;
-            item.Description = modelItem.Description;
-            item.Price = modelItem.Price;
-            item.Availability = modelItem.Availability;
-            item.ImagePath = modelItem.ImagePath;
-            item.OverallRating = modelItem.OverallRating;
-            item.Category = modelItem.Category;
-            if (item.HasSet)
+            item.Name = itemModel.Name;
+            item.Description = itemModel.Description;
+            item.Price = itemModel.Price;
+            item.Availability = itemModel.Availability;
+            item.ImagePath = itemModel.ImagePath;
+            item.OverallRating = itemModel.OverallRating;
+            item.Category = itemModel.Category;
+            if (itemModel.HasSet)
             {
                 item.HasSet = true;
-                item.SetId = modelItem.SetId;
+                item.SetId = itemModel.SetId;
             }
 
             await this._context.Items.AddAsync(item);
-            var result = await this._context.SaveChangesAsync();
+            var resilt = await this._context.SaveChangesAsync();
 
-            if (result != 1)
-            {
-                throw new NullReferenceException("Could not load item into database. Please try again.");
-            }
-
-            return 1;
+            return resilt;
         }
 
-        public async Task<int> EditItemAsync(EditItemModel modelItem)
+        public async Task<int> UpdateItemAsync(EditItemModel itemModel)
         {
-            var item = this._context.Items.Where(x => x.Name == modelItem.Name).Single();
+            var item = await this._context.Items.Where(x => x.Name == itemModel.Name).SingleAsync();
 
-            item.Name = modelItem.Name;
-            item.Description = modelItem.Description;
-            item.Price = modelItem.Price;
-            item.Availability = modelItem.Availability;
-            item.ImagePath = modelItem.ImagePath;
-            item.OverallRating = modelItem.OverallRating;
-            item.Category = modelItem.Category;
+            item.Name = itemModel.Name;
+            item.Description = itemModel.Description;
+            item.Price = itemModel.Price;
+            item.Availability = itemModel.Availability;
+            item.ImagePath = itemModel.ImagePath;
+            item.OverallRating = itemModel.OverallRating;
+            item.Category = itemModel.Category;
             if (item.HasSet)
             {
                 item.HasSet = true;
-                item.SetId = modelItem.SetId;
+                item.SetId = itemModel.SetId;
             }
 
             this._context.Update(item);
             var result = await this._context.SaveChangesAsync();
 
-            if (result != 1)
-            {
-                throw new NullReferenceException("Could not load item into database. Please try again.");
-            }
-
-            return 1;
+            return result;
         }
 
-        public IEnumerable<GetItemModel> GetAllItems()
+        public async Task<IEnumerable<GetItemModel>> GetAllItemsAsync()
         {
-            var allItems = _context.Items;
+            var allItems = await _context.Items.ToListAsync();
 
             foreach (var item in allItems)
             {
                 GetItemModel itemModel = new GetItemModel();
 
-                item.Name = itemModel.Name;
-                item.Description = itemModel.Description;
-                item.Price = itemModel.Price;
-                item.Availability = itemModel.Availability;
-                item.ImagePath = itemModel.ImagePath;
-                item.OverallRating = itemModel.OverallRating;
-                item.Category = itemModel.Category;
+                itemModel.Name = item.Name;
+                itemModel.Description = item.Description;
+                itemModel.Price = item.Price;
+                itemModel.Availability = item.Availability;
+                itemModel.ImagePath = item.ImagePath;
+                itemModel.OverallRating = item.OverallRating;
+                itemModel.Category = item.Category;
                 if (item.HasSet)
                 {
-                    item.HasSet = true;
-                    item.SetId = itemModel.SetId;
+                    itemModel.HasSet = true;
+                    itemModel.SetId = item.SetId;
                 }
 
-                itemModels.Add(itemModel);
+                itemList.Add(itemModel);
             }
 
-            return itemModels;
+            return itemList;
         }
 
-        public GetItemModel GetItemByName(string name)
+        public async Task<GetItemModel> GetItemByName(string name)
         {
-            var item = _context.Items.Single(x => x.Name == name);
+            var item = await _context.Items.SingleAsync(x => x.Name == name);
 
             GetItemModel itemModel = new GetItemModel();
 
@@ -128,36 +121,36 @@
             return itemModel;
         }
 
-        public List<GetItemModel> GetItemsByCategory(string category)
+        public async Task<IEnumerable<GetItemModel>> GetItemsByCategory(string category)
         {
-            var items = _context.Items.Where(x => x.Category == category);
+            var items = await _context.Items.Where(x => x.Category == category).ToListAsync();
 
             foreach (var item in items)
             {
                 GetItemModel itemModel = new GetItemModel();
 
-                item.Name = itemModel.Name;
-                item.Description = itemModel.Description;
-                item.Price = itemModel.Price;
-                item.Availability = itemModel.Availability;
-                item.ImagePath = itemModel.ImagePath;
-                item.OverallRating = itemModel.OverallRating;
-                item.Category = itemModel.Category;
+                itemModel.Name = item.Name;
+                itemModel.Description = item.Description;
+                itemModel.Price = item.Price;
+                itemModel.Availability = item.Availability;
+                itemModel.ImagePath = item.ImagePath;
+                itemModel.OverallRating = item.OverallRating;
+                itemModel.Category = item.Category;
                 if (item.HasSet)
                 {
-                    item.HasSet = true;
-                    item.SetId = itemModel.SetId;
+                    itemModel.HasSet = true;
+                    itemModel.SetId = item.SetId;
                 }
 
-                itemModels.Add(itemModel);
+                itemList.Add(itemModel);
             }
 
-            return itemModels;
+            return itemList;
         }
 
-        public void DeleteItemAsync(string name)
+        public async Task<int> DeleteItemAsync(string name)
         {
-            var item = this._context.Items.Where(x => x.Name == name);
+            var item = await this._context.Items.Where(x => x.Name == name).SingleAsync();
 
             if (item == null)
             {
@@ -165,7 +158,9 @@
             }
 
             this._context.Remove(item);
-            this._context.SaveChanges();
+            var result = await this._context.SaveChangesAsync();
+
+            return result;
         }
     }
 }
