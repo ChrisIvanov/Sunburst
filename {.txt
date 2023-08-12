@@ -1,0 +1,11 @@
+{
+  "name": "Buddha statue (wooden)",
+  "availability": true,
+  "price": 75,
+  "description": "Discover serenity and wisdom embodied in our exquisite Buddha statues. Crafted with reverence, these statues serve as timeless reminders of inner peace, mindfulness, and the universal quest for enlightenment. Embrace the tranquility they represent, transcending cultural boundaries and uniting us in our shared journey towards spiritual awakening.",
+  "hasSet": true,
+  "setId": 1,
+  "imagePath": "https://spiritsunburst.blob.core.windows.net/images/wooden-buddha-statue.jpg?sp=r&st=2023-08-11T17:58:04Z&se=2023-08-22T01:58:04Z&spr=https&sv=2022-11-02&sr=b&sig=tGs%2Fpn5E7dWoLFcvIi5zbtbdBwLAghiIhP%2BnsXJwhSc%3D",
+  "overallRating": 0,
+  "category": "Spiritual Artifacts"
+}

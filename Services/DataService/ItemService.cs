@@ -23,7 +23,7 @@
         {
             var match = await this._context.Items.AnyAsync(x => x.Name == itemModel.Name);
 
-            if (!match)
+            if (match)
             {
                 throw new NullReferenceException("Item already exists.");
             }
@@ -103,6 +103,11 @@
         {
             var item = await _context.Items.SingleAsync(x => x.Name == name);
 
+            if (item == null)
+            {
+                throw new Exception("No such item exists");
+            }
+
             GetItemModel itemModel = new GetItemModel();
 
             itemModel.Name = item.Name;
@@ -124,6 +129,11 @@
         public async Task<IEnumerable<GetItemModel>> GetItemsByCategory(string category)
         {
             var items = await _context.Items.Where(x => x.Category == category).ToListAsync();
+
+            if (items.Count == 0 || items == null)
+            {
+                throw new Exception("No such category exists");
+            }
 
             foreach (var item in items)
             {

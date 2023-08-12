@@ -1,3 +1,3 @@
-<div class="card-container">
-    <p>blah blah blah still working on database calls</p>
+<div *ngFor="let item of items">
+  <app-item-card [item]="item" [ImagePath]="item.ImagePath"></app-item-card>
 </div>

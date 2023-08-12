@@ -15,6 +15,4 @@ export class InventoryService {
     getAllItems(): Observable<any> {
       return this.http.get(this.urlConfig.itemsUrl);
     }
-
-    
 }

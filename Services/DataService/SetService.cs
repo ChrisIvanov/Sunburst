@@ -53,7 +53,7 @@
                     }
 
                     modelSetItems.Add(itemModel);
-                }
+                }   
 
                 set.Items = modelSetItems;
             }
