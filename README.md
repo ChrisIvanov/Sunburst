@@ -7,5 +7,5 @@ ASP.NET
 C#
 Azure Blob Storage
 Azure SQL Database
-Angular
+Angular v16
 TypeScript
