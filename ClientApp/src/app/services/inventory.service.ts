@@ -15,4 +15,10 @@ export class InventoryService {
     getAllItems(): Observable<any> {
       return this.http.get(this.urlConfig.itemsUrl);
     }
+
+    getItemByName(itemName: string): Observable<any> {
+      const url = this.urlConfig.itemsUrl + "/" + itemName;
+      //console.log(url)
+      return this.http.get(url);
+    }
 }

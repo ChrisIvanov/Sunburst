@@ -81,7 +81,7 @@
             }
         }
 
-        [HttpGet("items/{category}")]
+        [HttpGet("items+{category}")]
         public async Task<IActionResult> GetItemsByCategory(string category)
         {
             var items = await _itemService.GetItemsByCategory(category);

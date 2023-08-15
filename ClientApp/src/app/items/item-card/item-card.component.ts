@@ -7,10 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 
 export class ItemCardComponent {
+
   @Input() item: any;
-  @Input() ImagePath: any;
-  
-  constructor() {
-    console.log(String(this.ImagePath));
-  }
+  @Input() imagePath!: string;
 }

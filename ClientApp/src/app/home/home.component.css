@@ -21,6 +21,8 @@ h1, h3{
     align-items: center;
     justify-content: center;
 
+
+    top: 20px;
 }
 
 .header h1 {
@@ -32,7 +34,7 @@ h1, h3{
 .header h3 {
     display: flex;
     position: relative;
-    left: 500px;
+    left: 530px;
 }
 
 .subheader-container {
@@ -65,7 +67,7 @@ h1, h3{
 
 .subheader-row p {
     display: flex;
-    color: chocolate;
+    color: #CBA135;
     font-size: 24px;
     font-weight: 500;
     text-shadow: 2px 4px 7px rgb(16, 3, 48);

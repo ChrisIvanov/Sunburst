@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Sunburst.Controllers;
 using Sunburst.Data;
+using Sunburst.Middleware;
 using Sunburst.Models;
 using Sunburst.Services.Contracts.DataContracts;
 using Sunburst.Services.DataService;
@@ -34,22 +35,23 @@ builder.Services.AddScoped<ISetService, SetService>();
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
-});
-
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(builder =>
+    options.AddPolicy("AllowSpecificOrigin", builder =>
     {
-        builder.WithOrigins("https://localhost:44459")
+        builder.AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader();
     });
 });
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+});
+
 
 var app = builder.Build();
 
@@ -71,8 +73,9 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseMiddleware<CorsMiddleware>();
+app.UseCors("AllowSpecificOrigin");
 app.UseRouting();
-app.UseCors();
 
 app.UseAuthentication();
 app.UseIdentityServer();

@@ -1,0 +1,26 @@
+.item-detail {
+   display: flex; /* Use flexbox to create a two-column layout */
+   align-items: center; /* Align items vertically in the center */
+   padding: 20px; /* Add padding for spacing */
+ 
+   /* Optional: Adjust width and margin as needed */
+   width: 100%;
+   max-width: 800px;
+   margin: 0 auto;
+ }
+ 
+ .image-container {
+   flex: 0 0 auto; /* Let the container shrink to fit content */
+   margin-right: 20px; /* Add margin between image and details */
+ }
+ 
+ img {
+   max-width: 100%; /* Ensure the image fits within its container */
+   width: 300px;
+   height: 380px;
+ }
+ 
+ .details-container {
+   flex: 1; /* Allow the details container to grow and fill available space */
+ }
+ 
