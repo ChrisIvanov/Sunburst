@@ -15,6 +15,7 @@ import { ItemPageComponent } from './items/item-page/item-page.component';
 import { AuthService } from './services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import {CookieService} from 'ngx-cookie-service';
+import { CartComponent } from './shop/cart/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,8 @@ import {CookieService} from 'ngx-cookie-service';
     HomeComponent,
     ShopComponent,
     ItemCardComponent,
-    ItemPageComponent
-    
+    ItemPageComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,6 +37,8 @@ import {CookieService} from 'ngx-cookie-service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'shop', component: ShopComponent, pathMatch: 'full' },
       { path: 'shop/:name', component: ItemPageComponent, pathMatch: 'full' },
+      { path: 'cart', component: CartComponent, pathMatch: 'full' },
+
       
     ])
   ],

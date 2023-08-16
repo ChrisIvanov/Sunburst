@@ -46,7 +46,6 @@ export class ItemPageComponent implements OnInit {
   isUserLoggedIn(): boolean {
 
     const user = this.authService.isAuthenticated();
-    const isAuth = this.authorizeService.isAuthenticated;
     this.authorizeService.signOut;
 
     return user !== null;
@@ -57,7 +56,7 @@ export class ItemPageComponent implements OnInit {
       console.log('logged');
     } else {
       console.log('not logged');
-      this.router.navigate(['Identity/Account/Login'], { queryParams: { message: 'Please log in to buy items.' } });
+      this.router.navigate(['authentication/login'], { queryParams: { message: 'Please log in to buy items.' } });
     }
   }
 
