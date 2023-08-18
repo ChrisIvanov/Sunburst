@@ -4,11 +4,13 @@
     {
         public int Id { get; set; }
 
+        public string? UserName { get; set; }
+
         public decimal TotalPrice { get; set; }
 
         public string? DeliveryDate { get; set; }
 
-        public IEnumerable<Item>? Items { get; set; }
+        public IEnumerable<CartItem>? Items { get; set; }
 
         public DateTime? Created { get; set; }
 

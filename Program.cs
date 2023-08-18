@@ -10,6 +10,8 @@ using Sunburst.Middleware;
 using Sunburst.Models;
 using Sunburst.Services.Contracts.DataContracts;
 using Sunburst.Services.DataService;
+using AutoMapper;
+using Sunburst.Services.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,7 @@ builder.Services.AddIdentityServer()
 
 builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<ISetService, SetService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
@@ -87,6 +90,6 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();

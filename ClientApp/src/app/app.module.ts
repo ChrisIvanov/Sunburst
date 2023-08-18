@@ -16,6 +16,7 @@ import { AuthService } from './services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import {CookieService} from 'ngx-cookie-service';
 import { CartComponent } from './shop/cart/cart/cart.component';
+import { CartCommunicationService } from './services/cart/cart-communication.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CartComponent } from './shop/cart/cart/cart.component';
       { path: 'shop/:name', component: ItemPageComponent, pathMatch: 'full' },
       { path: 'cart', component: CartComponent, pathMatch: 'full' },
 
+
       
     ])
   ],
@@ -46,6 +48,7 @@ import { CartComponent } from './shop/cart/cart/cart.component';
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     AuthService,
     CookieService,
+    CartCommunicationService
   ],
   
   bootstrap: [AppComponent]

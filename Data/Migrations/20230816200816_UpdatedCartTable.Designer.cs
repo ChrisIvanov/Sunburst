@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sunburst.Data;
 
@@ -11,9 +12,10 @@ using Sunburst.Data;
 namespace Sunburst.Data.Migrations
 {
     [DbContext(typeof(SunburstDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230816200816_UpdatedCartTable")]
+    partial class UpdatedCartTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -333,35 +335,6 @@ namespace Sunburst.Data.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("Sunburst.Data.Models.Shop.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ItemName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.ToTable("CartItems");
-                });
-
             modelBuilder.Entity("Sunburst.Data.Models.Shop.History", b =>
                 {
                     b.Property<int>("Id")
@@ -389,6 +362,9 @@ namespace Sunburst.Data.Migrations
 
                     b.Property<bool>("Availability")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -418,6 +394,8 @@ namespace Sunburst.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId");
 
                     b.HasIndex("HistoryId");
 
@@ -601,17 +579,12 @@ namespace Sunburst.Data.Migrations
                         .HasForeignKey("HistoryId");
                 });
 
-            modelBuilder.Entity("Sunburst.Data.Models.Shop.CartItem", b =>
+            modelBuilder.Entity("Sunburst.Data.Models.Shop.Item", b =>
                 {
                     b.HasOne("Sunburst.Data.Models.Shop.Cart", null)
                         .WithMany("Items")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                        .HasForeignKey("CartId");
 
-            modelBuilder.Entity("Sunburst.Data.Models.Shop.Item", b =>
-                {
                     b.HasOne("Sunburst.Data.Models.Shop.History", null)
                         .WithMany("ItemsReviewed")
                         .HasForeignKey("HistoryId");

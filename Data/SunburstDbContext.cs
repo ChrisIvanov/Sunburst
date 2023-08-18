@@ -15,6 +15,7 @@
         public DbSet<History> Hitories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Set> Sets { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         public SunburstDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
@@ -29,6 +30,10 @@
                 .HasColumnType("decimal(18, 2)");
 
             modelBuilder.Entity<Item>()
+                .Property(c => c.Price)
+                .HasColumnType("decimal(18, 2)");
+
+            modelBuilder.Entity<CartItem>()
                 .Property(c => c.Price)
                 .HasColumnType("decimal(18, 2)");
 

@@ -4,8 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UrlConfigService {
-  private baseUrl = 'https://localhost:7215';
+  public readonly baseUrl = 'https://localhost:7215';
 
   public readonly itemsUrl = `${this.baseUrl}/api/Data/items`;
+
+  public readonly cartUrl = `${this.baseUrl}/api/Cart`;
 
 }

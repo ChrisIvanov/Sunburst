@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventoryService } from '../services/inventory.service';
+import { InventoryService } from '../services/inventory/inventory.service';
 import { Observer } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 

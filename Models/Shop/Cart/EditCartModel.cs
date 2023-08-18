@@ -1,24 +1,22 @@
 ﻿namespace Sunburst.Models.Shop.Cart
 {
-    using Sunburst.Data.Models.Shop;
-    using Sunburst.Models.Shop.Item;
+    using Sunburst.Models.Shop.Cart.CartItem;
     using System.ComponentModel.DataAnnotations;
 
     public class EditCartModel
     {
-        [Required]
+        public int Id { get; set; }
+
+        public string UserName { get; set; }
+
         public decimal TotalPrice { get; set; }
 
-        [Required]
-        public DateTime DeliveryDate { get; set; } = DateTime.Now.AddDays(3);
+        public DateTime DeliveryDate { get; set; }
 
-        [Required]
-        public IEnumerable<GetItemModel>? Items { get; set; }
-
-        [Required]
         public DateTime? Created { get; set; }
 
-        [Required]
+        public IEnumerable<GetCartItemModel>? Items { get; set; }
+
         public bool Edited { get; set; }
     }
 }

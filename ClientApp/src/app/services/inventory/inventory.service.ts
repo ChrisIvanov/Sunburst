@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UrlConfigService } from './url-config.service';
+import { UrlConfigService } from '../url-config.service';
 
 @Injectable({
   providedIn: 'root'

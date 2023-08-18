@@ -87,6 +87,7 @@
                 itemModel.ImagePath = item.ImagePath;
                 itemModel.OverallRating = item.OverallRating;
                 itemModel.Category = item.Category;
+
                 if (item.HasSet)
                 {
                     itemModel.HasSet = true;
