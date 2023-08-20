@@ -6,18 +6,16 @@
 
     public interface ICartService
     {
-        Task<bool> CheckIfCartExists(string userName);
+        bool CheckIfCartExists(string userName);
 
-        Task<int> CreateCartAsync(CreateCartModel modelItem);
+        int CreateCart(CreateCartModel modelItem);
 
-        Task<int> UpdateCartAsync(EditCartModel modelItem);
+        int UpdateCart(EditCartModel modelItem);
 
-        Task<int> DeleteCartAsync(int cartId);
+        int DeleteCart(int cartId);
 
-        Task<IEnumerable<GetCartModel>> GetAllCartsAsync();
+        GetCartModel GetUserCart(string userName);
 
-        Task<IEnumerable<GetCartModel>> GetCartsByUserName(string userName);
-
-        Task<IEnumerable<GetCartItemModel>?> GetCartItems(string userName);
+        IEnumerable<GetCartItemModel> GetCartItems(string userName);
     }
 }

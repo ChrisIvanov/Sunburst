@@ -11,9 +11,9 @@
 
         public decimal TotalPrice { get; set; }
 
-        public DateTime DeliveryDate { get; set; }
+        public string DeliveryDate { get; set; }
 
-        public DateTime? Created { get; set; }
+        public string? Created { get; set; }
 
         public IEnumerable<GetCartItemModel>? Items { get; set; }
 

@@ -1,1 +1,28 @@
-<p>cart works!</p>
+<!-- cart.component.html -->
+<div class="cart-list">
+    <div *ngIf="cartItems.length > 0; else noItems">
+        <div class="cart-item" *ngFor="let item of cartItems">
+          <img [src]="item.imagePath" alt="{{ item.name }}" class="item-image">
+          <div class="item-details">
+            <p class="item-name">{{ item.name }}</p>
+            <p class="item-price">{{ item.price | currency }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <ng-template #noItems>
+        <h3 class="no-items">No items in the cart.</h3>
+      </ng-template>
+      
+  </div>
+  
+  <div class="total-price">
+    <p>Total Price: {{ getTotalPrice() | currency }}</p>
+  </div>
+  
+  <button *ngIf="!purchaseComplete" (click)="completePurchase()" class="purchase-button">Purchase</button>
+  
+  <p *ngIf="purchaseComplete" class="purchase-message">
+    Thank you for your purchase. Your items will be delivered on {{ deliveryDate }}.
+  </p>
+  

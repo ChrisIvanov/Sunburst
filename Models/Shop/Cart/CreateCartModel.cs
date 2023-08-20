@@ -17,7 +17,6 @@
 
         public DateTime? Created { get; set; } = DateTime.Now;
 
-        [Required]
         public IEnumerable<GetCartItemModel>? Items { get; set; }
 
         public bool Edited { get; set; } = false;

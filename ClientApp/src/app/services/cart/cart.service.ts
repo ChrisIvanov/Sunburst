@@ -23,27 +23,22 @@ export class CartService {
         }),
       };
       console.log('inside cart service create-cart')
-      return this.http.post<any>(this.urlConfig.cartUrl, cart, httpOptions);
+      return  this.http.post<any>(this.urlConfig.cartUrl + "/create", cart, httpOptions);
     }
 
     updateCart(cart: any): Observable<any> {
-      
-      return this.http.put(this.urlConfig.cartUrl, cart);
+      return this.http.put(this.urlConfig.cartUrl + "/update", cart);
     }
 
     deleteCart(id: number): Observable<any> {
       return this.http.delete(this.urlConfig.cartUrl + '/${id}');
     }
 
-    getAllCarts(): Observable<any> {
-      return this.http.get(this.urlConfig.cartUrl + "/GetAll");
-    }
-
     getCartItemByName(cartName: string): Observable<any> {
-      return this.http.get(this.urlConfig.cartUrl + "/" + cartName);
+      return this.http.get(this.urlConfig.cartUrl + "/GetCartItem/${cartItem}");
     }
 
-    getCartByUser(userName: string): Observable<any> {
-      return this.http.get(this.urlConfig.cartUrl + "/" + userName);
+    getUserCart(userName: string): Observable<any> {
+      return this.http.get(this.urlConfig.cartUrl + "/GetCartByUserName/" + userName);
     }
 }

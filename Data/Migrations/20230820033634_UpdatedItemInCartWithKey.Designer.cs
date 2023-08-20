@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sunburst.Data;
 
@@ -11,9 +12,10 @@ using Sunburst.Data;
 namespace Sunburst.Data.Migrations
 {
     [DbContext(typeof(SunburstDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230820033634_UpdatedItemInCartWithKey")]
+    partial class UpdatedItemInCartWithKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -428,19 +430,14 @@ namespace Sunburst.Data.Migrations
 
             modelBuilder.Entity("Sunburst.Data.Models.Shop.ItemInCart", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("CartId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CartId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
-
-                    b.HasKey("Id");
 
                     b.ToTable("ItemsInCarts");
                 });

@@ -16,6 +16,7 @@
         public DbSet<Item> Items { get; set; }
         public DbSet<Set> Sets { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<ItemInCart> ItemsInCarts { get; set; }
 
         public SunburstDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)

@@ -18,11 +18,11 @@
         }
 
         [HttpGet("/api/Cart/Check/{userName}")]
-        public async Task<IActionResult> CheckIfCartExists(string userName)
+        public IActionResult CheckIfCartExists(string userName)
         {
             var response = this._cartService.CheckIfCartExists(userName);
 
-            if (response.Result == false)
+            if (response == false)
             {
                 return Ok(false);
                 
@@ -32,10 +32,10 @@
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateCart([FromBody] CreateCartModel cartModel)
+        [HttpPost("/api/Cart/create")]
+        public IActionResult CreateCart([FromBody] CreateCartModel cartModel)
         {
-            var result = await _cartService.CreateCartAsync(cartModel);
+            var result = _cartService.CreateCart(cartModel);
 
             if (result != 1)
             {
@@ -45,12 +45,12 @@
             return Ok("Successfully created cart.");
         }
 
-        [HttpPut]
-        public async Task<IActionResult> EditCart([FromBody] EditCartModel cartModel)
+        [HttpPut("/api/Cart/update")]
+        public IActionResult UpdateCart([FromBody] EditCartModel cartModel)
         {
-            var result = await _cartService.UpdateCartAsync(cartModel);
+            var result = _cartService.UpdateCart(cartModel);
 
-            if (result != 1)
+            if (result == 0)
             {
                 return BadRequest("Failed to update cart.");
             }
@@ -59,9 +59,9 @@
         }
 
         [HttpDelete("/api/Cart/{id}")]
-        public async Task<IActionResult> DeleteCart([FromBody] int cartId)
+        public IActionResult DeleteCart([FromBody] int cartId)
         {
-            var result = await _cartService.DeleteCartAsync(cartId);
+            var result = _cartService.DeleteCart(cartId);
 
             if (result != 1)
             {
@@ -71,23 +71,10 @@
             return Ok("Successfully delete cart.");
         }
 
-        [HttpGet("/api/Cart/GetAll")]
-        public async Task<IActionResult> GetAllCartsAsync()
-        {
-            var carts = await _cartService.GetAllCartsAsync();
-
-            if (carts == null)
-            {
-                return BadRequest("Failed to fetch carts or no carts in the database.");
-            }
-
-            return Ok(carts);
-        }
-
         [HttpGet("/api/Cart/GetCartItem/{cartItem}")]
-        public async Task<IActionResult> GetCartItems(string userName)
+        public IActionResult GetCartItems(string userName)
         {
-            var cartsItem = await _cartService.GetCartItems(userName);
+            var cartsItem = _cartService.GetCartItems(userName);
 
             if (cartsItem == null)
             {
@@ -98,9 +85,9 @@
         }
 
         [HttpGet("/api/Cart/GetCartByUserName/{userName}")]
-        public async Task<IActionResult> GetCartsByUserName(string userName)
+        public IActionResult GetUserCart(string userName)
         {
-            var carts = await _cartService.GetCartsByUserName(userName);
+            var carts = _cartService.GetUserCart(userName);
 
             if (carts == null)
             {
